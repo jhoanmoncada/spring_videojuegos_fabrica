@@ -21,7 +21,7 @@ import com.example.videojuegos.Dto.JuegoDTO;
 import com.example.videojuegos.Model.Alquiler;
 import com.example.videojuegos.Model.Cliente;
 import com.example.videojuegos.Model.Juego;
-import com.example.videojuegos.Repository.JuegoRepository;
+import com.example.videojuegos.Repository.Juego.JuegoRepository;
 
 
 @RestController

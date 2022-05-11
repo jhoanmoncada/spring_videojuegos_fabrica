@@ -95,5 +95,17 @@ public class Cliente {
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", alquilados=" + alquilados + ", nombre=" + nombre + ", documento="
+				+ documento + ", correo=" + correo + ", direccion=" + direccion + ", telefono=" + telefono + "]";
+	}
+	
+	
+	
+	
 
 }

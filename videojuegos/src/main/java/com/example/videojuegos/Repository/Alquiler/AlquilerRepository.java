@@ -1,4 +1,4 @@
-package com.example.videojuegos.Repository;
+package com.example.videojuegos.Repository.Alquiler;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
