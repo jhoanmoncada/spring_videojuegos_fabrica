@@ -26,7 +26,7 @@ import com.example.videojuegos.Model.Juego;
 import com.example.videojuegos.Dto.AlquilerDTO;
 import com.example.videojuegos.Repository.Alquiler.AlquilerRepository;
 import com.example.videojuegos.Repository.Cliente.ClienteRepositoryDao;
-import com.example.videojuegos.Repository.Juego.JuegoRepository;
+import com.example.videojuegos.Repository.Juego.JuegoRepositoryDao;
 
 
 
@@ -42,7 +42,7 @@ public class AlquilerController {
 	private ClienteRepositoryDao cliente;
 	
 	@Autowired
-	private JuegoRepository juegorepo;
+	private JuegoRepositoryDao juegorepo;
 	
 	
 	//registrar un alquiler
