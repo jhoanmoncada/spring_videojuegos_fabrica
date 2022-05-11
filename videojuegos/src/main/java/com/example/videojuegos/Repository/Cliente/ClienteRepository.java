@@ -1,7 +1,8 @@
 package com.example.videojuegos.Repository.Cliente;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Component;
 import com.example.videojuegos.Utils;
 import com.example.videojuegos.Model.Cliente;
@@ -22,9 +23,18 @@ public class ClienteRepository {
 			return Utils.respuesta(true,"Registro exitoso", cli);
 		}catch(Exception e) {
 			System.err.println("ERROR:: " + e.getMessage());
-			return Utils.respuesta(true,"Fallo el registro", null);
+			return Utils.respuesta(false,"Fallo el registro", null);
 		}
 	}
 	
-
+	public List<Cliente> listarClientes(){
+		List <Cliente> clientes = new ArrayList<Cliente>();
+		try {
+			clientes = cliente.findAll();
+		}catch(Exception e) {
+			System.err.println("ERROR:: "+e.getMessage());
+		}
+		return clientes; 
+	}
+	
 }

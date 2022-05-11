@@ -40,23 +40,8 @@ public class ClienteController {
 	//obtener todos los registros
 	@GetMapping(path="/todosClientes")
 	public @ResponseBody Map<String,Object> listarClientes(){
-		List <Cliente> clientes=new ArrayList<Cliente>();
-		List <ClienteDTO> clientes2=new ArrayList<ClienteDTO>();
-		try {
-			clientes=cliente.findAll();
-			if(clientes.size()==0) {
-				return Utils.respuesta(false, "No existen registros", null);
-			}
-			for(int i=0;i<clientes.size();i++) {
-			ClienteDTO cl=new ClienteDTO(clientes.get(i).getIdCliente(),clientes.get(i).getNombre(),clientes.get(i).getDocumento()
-					,clientes.get(i).getCorreo(),clientes.get(i).getDireccion(),clientes.get(i).getTelefono());
-			clientes2.add(cl);
-			}
-			return Utils.respuesta(true,"Registros encontrados", clientes2);
-			
-		}catch(Exception e) {
-			return Utils.respuesta(false, "Error al obtener los registros", null);
-		}
+		ClienteService clienteService = new ClienteService(cliente);
+		return clienteService.listarClientes();
 	}
 	
 	//buscar un cliente por id
