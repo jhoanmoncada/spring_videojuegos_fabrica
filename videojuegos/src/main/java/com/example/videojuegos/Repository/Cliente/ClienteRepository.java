@@ -3,6 +3,8 @@ package com.example.videojuegos.Repository.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 import com.example.videojuegos.Utils;
 import com.example.videojuegos.Model.Cliente;
@@ -35,6 +37,17 @@ public class ClienteRepository {
 			System.err.println("ERROR:: "+e.getMessage());
 		}
 		return clientes; 
+	}
+	
+	public Optional<Cliente> buscarCliente(Integer id) {
+		Optional<Cliente> clien = null;
+		try {
+			clien = cliente.findById(id);
+			return clien;
+		} catch (Exception e) {
+			System.err.println("ERROR:: "+e.getMessage());
+		}
+		return clien;		
 	}
 	
 }

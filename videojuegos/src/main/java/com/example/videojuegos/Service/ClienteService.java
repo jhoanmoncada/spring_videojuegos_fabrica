@@ -2,6 +2,8 @@ package com.example.videojuegos.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import com.example.videojuegos.Utils;
 import com.example.videojuegos.Model.Cliente;
 import com.example.videojuegos.Repository.Cliente.ClienteRepository;
@@ -38,5 +40,24 @@ public class ClienteService {
 			return Utils.respuesta(false, "Error al obtener los registros", null);
 		}
 	}
+	
+	public Map<String,Object> buscarCliente(Integer id){
+		ClienteRepository clienteRepository = new ClienteRepository(this.cliente);
+		try {
+			Optional<Cliente> cliente = clienteRepository.buscarCliente(id);
+			if(cliente != null) {
+				if(cliente.isPresent()) {
+					return Utils.respuesta(true, "Registro encontrado", cliente);
+				} else {
+					return Utils.respuesta(false, "Registro no encontrado", null);
+				}
+			} else {
+				return Utils.respuesta(false, "Registro no encontrado", null);
+			}
+		} catch (Exception e) {
+			return Utils.respuesta(false, "Error al obtener el registro", null);
+		}
+	}
+	
 
 }

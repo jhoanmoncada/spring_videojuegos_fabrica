@@ -47,22 +47,14 @@ public class ClienteController {
 	//buscar un cliente por id
 	@GetMapping(path="/buscarCliente/{id}")
 	public @ResponseBody Map<String,Object> listarCliente(@PathVariable Integer id){
-		try {
-			Optional<Cliente> clien = cliente.findById(id);
-			if(clien.isPresent()) {
-				ClienteDTO cl=new ClienteDTO(clien.get().getIdCliente(),clien.get().getNombre(),clien.get().getDocumento()
-						,clien.get().getCorreo(),clien.get().getDireccion(),clien.get().getTelefono());
-				return Utils.respuesta(true, "Registro encontrado", cl);
-			}
-			return Utils.respuesta(false, "Registro no encontrado", null);
-		}catch(Exception e) {
-			return Utils.respuesta(false, "Error al obtener los registros", null);
-		}
+		ClienteService clienteService = new ClienteService(cliente);
+		return clienteService.buscarCliente(id);
 	}
 	
 	//eliminar un cliente por id
 	@DeleteMapping(path="/eliminarCliente/{id}")
 	public @ResponseBody Map<String,Object> eliminarCliente(@PathVariable Integer id){
+	
 		try {
 			Optional<Cliente> clien = cliente.findById(id);
 			if(clien.isPresent()) {
