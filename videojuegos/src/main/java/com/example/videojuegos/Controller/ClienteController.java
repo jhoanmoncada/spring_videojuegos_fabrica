@@ -54,17 +54,8 @@ public class ClienteController {
 	//eliminar un cliente por id
 	@DeleteMapping(path="/eliminarCliente/{id}")
 	public @ResponseBody Map<String,Object> eliminarCliente(@PathVariable Integer id){
-	
-		try {
-			Optional<Cliente> clien = cliente.findById(id);
-			if(clien.isPresent()) {
-				cliente.delete(clien.get());
-				return Utils.respuesta(true, "Registro eliminado", clien);
-			}
-			return Utils.respuesta(false, "Registro no encontrado", null);
-		}catch(Exception e) {
-			return Utils.respuesta(false, "Error al eliminar el registro", null);
-		}
+		ClienteService clienteService = new ClienteService(cliente);
+		return clienteService.eliminarCliente(id);	
 	}
 	
 	//actualizar un cliente

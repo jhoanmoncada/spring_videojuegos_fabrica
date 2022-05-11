@@ -50,4 +50,14 @@ public class ClienteRepository {
 		return clien;		
 	}
 	
+	public Map<String, Object> eliminarCliente(Integer id){
+		try {
+			cliente.deleteById(id);
+			return Utils.respuesta(true, "Registro eliminado", id);
+		} catch (Exception e) {
+			System.err.println("ERROR: "+e.getMessage());
+			return Utils.respuesta(false, "Cliente no encontrado", null);
+		}
+	}
+	
 }

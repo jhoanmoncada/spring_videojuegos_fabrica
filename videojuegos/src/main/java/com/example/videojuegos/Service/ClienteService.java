@@ -59,5 +59,16 @@ public class ClienteService {
 		}
 	}
 	
+	public Map<String, Object> eliminarCliente(Integer id){
+		ClienteRepository clienteRepository = new ClienteRepository(this.cliente);
+		Optional<Cliente> cliente = clienteRepository.buscarCliente(id);
+		if(cliente != null) {
+			if(cliente.isPresent()) {
+				return clienteRepository.eliminarCliente(id);
+			} 
+		}
+		return Utils.respuesta(false, "Cliente no encontrado", null);
+	}
+	
 
 }
