@@ -63,34 +63,5 @@ public class ClienteController {
 	public @ResponseBody Map<String, Object> actualizarCliente (@RequestBody ClienteDTO cl) {
 		ClienteService clienteService = new ClienteService(cliente);
 		return clienteService.actualizarCliente(cl);
-		/*try {
-			Optional<Cliente> clien = cliente.findById(cl.getIdCliente());
-			if(clien.isPresent()) {
-				
-				Cliente cl2=clien.get();
-				if(!cl.getNombre().isBlank()) {
-					cl2.setNombre(cl.getNombre());
-				}
-				if(!cl.getCorreo().isBlank()) {
-					cl2.setCorreo(cl.getCorreo());
-				}
-				if(!cl.getDireccion().isBlank()) {
-					cl2.setDireccion(cl.getDireccion());
-				}
-				if(!cl.getDocumento().isBlank()) {
-					cl2.setDocumento(cl.getDocumento());
-				}
-				if(!cl.getTelefono().isBlank()) {
-					cl2.setTelefono(cl.getTelefono());
-				}
-				cliente.save(cl2);
-				ClienteDTO cldto=new ClienteDTO(cl2.getIdCliente(),cl2.getNombre(),cl2.getDocumento()
-						,cl2.getCorreo(),cl2.getDireccion(),cl2.getTelefono());
-				return Utils.respuesta(true,"Registro actualizado", cldto);
-			}
-			return Utils.respuesta(false,"Registro no encontrado", null);
-		}catch(Exception e) {
-			return Utils.respuesta(false, "Error al modificar: "+e.getMessage(), null);
-		}*/
 	}
 }
