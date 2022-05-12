@@ -19,7 +19,7 @@ public class ClienteRepository {
 		this.cliente = cliente;
 	}
 
-	public Map<String, Object> registrarCliente(Cliente cli){
+	public Map<String, Object> registrarActualizarCliente(Cliente cli){
 		try {
 			cliente.save(cli);
 			return Utils.respuesta(true,"Registro exitoso", cli);
@@ -59,5 +59,7 @@ public class ClienteRepository {
 			return Utils.respuesta(false, "Cliente no encontrado", null);
 		}
 	}
+	
+	
 	
 }

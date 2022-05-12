@@ -61,7 +61,9 @@ public class ClienteController {
 	//actualizar un cliente
 	@PutMapping(path="/actualizarCliente")
 	public @ResponseBody Map<String, Object> actualizarCliente (@RequestBody ClienteDTO cl) {
-		try {
+		ClienteService clienteService = new ClienteService(cliente);
+		return clienteService.actualizarCliente(cl);
+		/*try {
 			Optional<Cliente> clien = cliente.findById(cl.getIdCliente());
 			if(clien.isPresent()) {
 				
@@ -89,6 +91,6 @@ public class ClienteController {
 			return Utils.respuesta(false,"Registro no encontrado", null);
 		}catch(Exception e) {
 			return Utils.respuesta(false, "Error al modificar: "+e.getMessage(), null);
-		}
+		}*/
 	}
 }

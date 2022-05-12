@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.example.videojuegos.Utils;
+import com.example.videojuegos.Dto.ClienteDTO;
 import com.example.videojuegos.Model.Cliente;
 import com.example.videojuegos.Repository.Cliente.ClienteRepository;
 import com.example.videojuegos.Repository.Cliente.ClienteRepositoryDao;
@@ -23,7 +24,7 @@ public class ClienteService {
 		if(cliente.getNombre() == null) {
 			return Utils.respuesta(true,"Fallo el registro", null);
 		}
-		return clienteRepository.registrarCliente(cliente);
+		return clienteRepository.registrarActualizarCliente(cliente);
 		
 	}
 	
@@ -68,6 +69,32 @@ public class ClienteService {
 			} 
 		}
 		return Utils.respuesta(false, "Cliente no encontrado", null);
+	}
+	
+	public Map<String, Object> actualizarCliente(ClienteDTO cl){
+		ClienteRepository clienteRepository = new ClienteRepository(this.cliente);
+		Optional<Cliente> clien = clienteRepository.buscarCliente(cl.getIdCliente());
+		if(clien.isPresent()) {
+			Cliente cl2=clien.get();
+			if(!cl.getNombre().isBlank()) {
+				cl2.setNombre(cl.getNombre());
+			}
+			if(!cl.getCorreo().isBlank()) {
+				cl2.setCorreo(cl.getCorreo());
+			}
+			if(!cl.getDireccion().isBlank()) {
+				cl2.setDireccion(cl.getDireccion());
+			}
+			if(!cl.getDocumento().isBlank()) {
+				cl2.setDocumento(cl.getDocumento());
+			}
+			if(!cl.getTelefono().isBlank()) {
+				cl2.setTelefono(cl.getTelefono());
+			}
+			return clienteRepository.registrarActualizarCliente(cl2);
+		}else {
+			return Utils.respuesta(false, "El cliente no existe", null);
+			}
 	}
 	
 
